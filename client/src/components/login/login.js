@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
@@ -30,6 +31,7 @@ const theme = createTheme();
 
 export default function SignIn(props) {
 
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,12 +50,12 @@ export default function SignIn(props) {
     })
     const responseData = await response.json();
     if(responseData.user) {
+      localStorage.setItem('token', responseData.user);
       alert('Login Successful')
       window.location.href = '/dashboard';
     } else {
       alert(" Please check your username and password");
     }
-    console.log(responseData);
   };
 
   return (
@@ -114,7 +116,7 @@ export default function SignIn(props) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" >
+                <Link href="#" variant="body2" onClick={() => navigate('/register')}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

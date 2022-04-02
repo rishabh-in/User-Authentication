@@ -12,13 +12,13 @@ export default function Main() {
     const theme = createTheme();
     return (
 		<div>
-        {/* <Router>
+        <Router>
           <Routes>
             <Route path="/login" exact element={<SignIn />} />
             <Route path="/register" exact element={<SignUp />} />
             <Route path="/dashboard" exact element={<Dashboard />} />
           </Routes>
-        </Router> */}
+        </Router>
     </div>
     )
 }    
